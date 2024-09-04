@@ -12,7 +12,12 @@ const App: React.FC = () => {
   useEffect(() => {
     const savedContacts = localStorage.getItem("contacts");
     if (savedContacts) {
-      setContacts(JSON.parse(savedContacts));
+      try {
+        const parsedContacts = JSON.parse(savedContacts);
+        setContacts(parsedContacts);
+      } catch (e) {
+        console.error("Failed to parse contacts from localStorage:", e);
+      }
     }
   }, []);
 
