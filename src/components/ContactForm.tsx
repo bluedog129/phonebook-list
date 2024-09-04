@@ -1,23 +1,18 @@
 import React, { useState } from "react";
-
-interface Contact {
-  name: string;
-  phone: string;
-  group: string;
-  shortDesc: string;
-}
+import { Contact } from "../types";
 
 interface ContactFormProps {
-  onAddContact: (contact: Contact) => void;
+  onAddContact: (contact: Omit<Contact, "id">) => void;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ onAddContact }) => {
-  const [contact, setContact] = useState<Contact>({
+  const [contact, setContact] = useState<Omit<Contact, "id">>({
     name: "",
     phone: "",
     group: "가족",
     shortDesc: "",
   });
+
   const [errors, setErrors] = useState<Partial<Contact>>({});
 
   const validateName = (name: string) => {
@@ -40,7 +35,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ onAddContact }) => {
     const { name, value } = e.target;
     setContact({ ...contact, [name]: value });
 
-    // 실시간 유효성 검사
     if (name === "name") {
       setErrors((prev) => ({ ...prev, name: validateName(value) }));
     } else if (name === "phone") {

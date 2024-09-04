@@ -1,12 +1,5 @@
 import React from "react";
-
-interface Contact {
-  id: number;
-  name: string;
-  phone: string;
-  group: string;
-  shortDesc: string;
-}
+import { Contact } from "../types";
 
 interface ContactListProps {
   contacts: Contact[];

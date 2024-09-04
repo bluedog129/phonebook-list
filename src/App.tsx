@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
+import { Contact } from "./types";
 import "./App.css";
-
-interface Contact {
-  id: number;
-  name: string;
-  phone: string;
-  group: string;
-  shortDesc: string;
-}
 
 const App: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
